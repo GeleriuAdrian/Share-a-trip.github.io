@@ -15,7 +15,7 @@ if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['tel']) && is
     $stmt->execute();
     
     // Redirect to the contact page
-    header("Location: ../pages/contact.php");
+    header("Location: ../pages/contact.html");
     exit();
 }
 

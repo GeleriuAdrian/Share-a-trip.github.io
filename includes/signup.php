@@ -30,7 +30,7 @@
 //         setcookie('username', urlencode($row['NAME']), time() + (86400 * 30), "/");
 
 //         // Redirect to the trips page
-//         header("Location: ../pages/trips.php");
+//         header("Location: ../pages/trips.html");
 //         exit();
 //     }
 // }

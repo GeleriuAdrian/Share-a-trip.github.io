@@ -14,7 +14,7 @@
 			setcookie('username',urlencode($row['NAME']), time() + (86400 * 30), "/");
 			setcookie('email',$row['EMAIL'], time() + (86400 * 30), "/");
 			setcookie('password',$row['PASSWORD'], time() + (86400 * 30), "/");
-			header("Location: ../pages/trips.php");
+			header("Location: ../pages/trips.html");
 		} else {
             echo "<div class='error'>Wrong username or password.</div>";
         }

@@ -14,7 +14,7 @@ if(isset($_POST['trip_id']) && isset($_POST['trip_id_c'])){
     // Corrected cookie deletion syntax
     setcookie($trip_id_c, '', time() - 3600, '/'); // Set the cookie value to an empty string and expire it
 
-    header("Location: ../pages/profile.php");
+    header("Location: ../pages/profile.html");
 }
 mysqli_close($con);
 ?>

@@ -23,7 +23,7 @@ if(isset($_POST['trip_id'])){
         mysqli_stmt_execute($stmt);
     }
     
-    header("Location: ../pages/trips.php");
+    header("Location: ../pages/trips.html");
 }
 mysqli_close($con);
 ?>

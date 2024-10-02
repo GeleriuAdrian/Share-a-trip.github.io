@@ -1,5 +1,5 @@
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+import { getDatabase, ref, set, update } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
 
 // Firebase Configuration
@@ -16,57 +16,62 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
-
 console.log("Firebase App initialized:", app);
 
-// Attach the event listener to the form in "container2"
-document.querySelector("#container2 form").addEventListener("submit", (e) => {
-    e.preventDefault(); // Prevent form submission
-    register(); // Call the register function
-});
+// Attach event listeners to forms
+document.querySelector("#container2 form").addEventListener("submit", (e) => handleFormSubmit(e, register));
+document.querySelector("#container1 form").addEventListener("submit", (e) => handleFormSubmit(e, login));
+
+function handleFormSubmit(event, action) {
+    event.preventDefault();
+    action();
+}
 
 // Register function to handle the signup
 async function register() {
     const full_name = document.querySelector("#container2 input[name='name']").value;
     const email = document.querySelector("#container2 input[name='email']").value;
     const pwd = document.querySelector("#container2 input[name='pwd']").value;
-    // Validate fields
-    if (!validate_field(full_name)) {
-        alert("Name is required");
-        return;
-    }
-    if (!validate_email(email) || !validate_pwd(pwd)) {
-        alert("Email or password is incorrect.");
-        return;
+
+    if (!validate_field(full_name) || !validate_email(email) || !validate_pwd(pwd)) {
+        return alert("Please fill out all fields correctly.");
     }
 
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, pwd);
-
-        const user = userCredential.user;
-        const user_data = {
-            email: email,
-            full_name: full_name,
+        await set(ref(database, "users/" + userCredential.user.uid), {
+            email,
+            full_name,
             last_login: Date.now(),
-        };
-
-        await set(ref(database, "users/" + user.uid), user_data);
+        });
         alert("User created and saved to database!");
     } catch (error) {
         alert(error.message);
     }
 }
 
-// Validation functions
-function validate_email(email) {
-    const expression = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return expression.test(email);
+// Login function to handle user sign-in
+async function login() {
+    const email = document.querySelector("#container1 input[name='email']").value;
+    const pwd = document.querySelector("#container1 input[name='pwd']").value;
+
+    if (!validate_email(email) || !validate_pwd(pwd)) {
+        return alert("Email or password is incorrect.");
+    }
+
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, pwd);
+        await update(ref(database, "users/" + userCredential.user.uid), {
+            last_login: Date.now(),
+        });
+        alert("User logged in successfully!");
+        window.location.replace("trips.html");
+    } catch (error) {
+        alert(error.message);
+    }
 }
 
-function validate_pwd(pwd) {
-    return pwd.length >= 6; // Check if password is at least 6 characters long
-}
-
-function validate_field(field) {
-    return field != null && field.length > 0; // Check if field is not empty
-}
+// Validation Functions
+const validate_email = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+const validate_pwd = (pwd) => pwd.length >= 6;
+const validate_field = (field) => field?.trim().length > 0;
