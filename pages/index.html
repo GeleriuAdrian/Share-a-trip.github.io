@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="../img/logo.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lemon&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../style.css">
+        <title>SHARE A TRIP</title>
+    </head>
+    <body>
+        <div class="login-popup">
+            <div class="dark-bg-popup" id="dark-bg-popup"></div>
+            <div id="container1" class="popup-container" >
+                <ion-icon name="close-circle-outline" class="popup-icon" onclick="closePopup('container1')"></ion-icon>
+                <div class="form-box">
+                    <h3 class="popup-title">Login to your account</h3>
+                    <form class="popup-form" method="post" action="../includes/login.php">
+                        <div class="input-box">
+                            <ion-icon name="mail" class="input-icon"></ion-icon>
+                            <input 
+                                type="email"
+                                placeholder="Email"
+                                class="input"
+                                name="email"
+                                required>
+                        </div>
+                        <div class="input-box">
+                            <ion-icon name="key" class="input-icon"></ion-icon>
+                            <input 
+                                type="password"
+                                placeholder="Password"
+                                class="input"
+                                name="pwd"
+                                id="pwd1"
+                                required>
+                            <ion-icon name="eye-off" id="pwd-icon-off1" class="pwd-icon" onclick="togglePwd('pwd1', 'pwd-icon-off1', 'pwd-icon-on1')"></ion-icon>
+                            <ion-icon name="eye" id="pwd-icon-on1" class="pwd-icon icon-off" onclick="togglePwd('pwd1', 'pwd-icon-off1', 'pwd-icon-on1')"></ion-icon>
+
+                        </div>
+                        <input
+                            type="submit"
+                            value="Login"
+                            class="popup-btn"
+                            name="login">
+                        <a href=# class="signup" onclick="switchAccount('container2', 'container1')">
+                            Do not have an account yet ?
+                        </a>
+                    </form>
+                </div>
+                <div class="popup-img"></div>
+            </div>
+
+            <div id="container2" class="popup-container">
+                <ion-icon name="close-circle-outline" class="popup-icon" onclick="closePopup('container2')"></ion-icon>
+                <div class="form-box">
+                   <h3 class="popup-title">Create your account</h3>
+                    <form class="popup-form" method="post" action="../includes/signup.php">
+                        <div class="input-box">
+                            <ion-icon name="person" class="input-icon"></ion-icon>
+                            <input
+                                type="name"
+                                placeholder="Full Name"
+                                class="input input-name"
+                                name="name"
+                                required>
+                        </div>
+                        <div class="input-box">
+                            <ion-icon name="mail" class="input-icon"></ion-icon>
+                            <input
+                                type="email"
+                                placeholder="Email"
+                                class="input"
+                                name="email"
+                                required>
+                        </div>
+                        <div class="input-box">
+                            <ion-icon name="key" class="input-icon"></ion-icon>
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                class="input"
+                                name="pwd"
+                                id="pwd2"
+                                required>
+                            <ion-icon name="eye-off" id="pwd-icon-off2" class="pwd-icon" onclick="togglePwd('pwd2', 'pwd-icon-off2', 'pwd-icon-on2')"></ion-icon>
+                            <ion-icon name="eye" id="pwd-icon-on2" class="pwd-icon icon-off" onclick="togglePwd('pwd2', 'pwd-icon-off2', 'pwd-icon-on2')"></ion-icon>
+                        </div>
+                        <input
+                            type="submit"
+                            value="Sign up"
+                            class="popup-btn"
+                            name="signup">
+                        <a href=# class="signup" onclick="switchAccount('container1', 'container2')">
+                            Already have an account ?
+                        </a>
+                    </form>
+                </div>
+                <div class="popup-img"></div>
+            </div>
+        </div>
+        <header class="header">
+            <div class="logo-box">
+                <img src="../img/logo.webp" alt="logo" class="logo-h">
+                <h3 class="header-name">Share a trip</h3>
+            </div>
+            <nav class="header-nav">
+                <ul class="header-list">
+                    <li class="header-li">
+                        <button class="log-in" onclick="openPopup('container1')">Log in</button>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <section class="hero">
+            <div class="hero-text-box">
+				<h1 class="hero-title">
+				    See new places meet new people
+				</h1>
+				<h2 class="hero-text">
+					Giving you the opportunity to travel to the places of your dreams while making new friends and socialising
+				</h2>
+			</div>
+            <div class="hero-icon">
+                <div class="hero-icon-arr"></div>
+                <div class="hero-icon-arr"></div>
+            </div>
+        </section>
+        <section class="testimonials">
+            <div class="testimonials-box">
+                <img 
+                src="../img/avatar1.webp"
+                alt="image of happy customer" class="testimonial-img">
+                <p class="testimonial-text">
+                    "Thanks to 'Share a trip' connecting with like-minded people has never been easier. Seamlessly find travel companions and exchange tips for unforgettable adventures, turning your travel dreams into shared realities."
+                </p>
+            </div>
+            <div class="customers-box">
+                    <img 
+                        src="../img/avatar3.webp" 
+                        alt="image of customer" 
+                        class="customer-img"
+                    >
+                    <img 
+                        src="../img/avatar2.webp" 
+                        alt="image of customer" class="customer-img"
+                    >
+                    <img 
+                        src="../img/avatar4.webp" 
+                        alt="image of customer" class="customer-img"
+                    >
+                <h4 class="customer-text">
+                    Over <span>200</span> satisfied travelers.
+                </h4>
+            </div>
+        </section>
+        <section class="about">
+			<h2 class="about-title">
+				How it works
+			</h2>
+			<div class="about-container">
+                <div class="about-box">
+                    <div class="step-number">01</div>
+                    <div class="step-box">  
+                        <ion-icon name="log-in" class="about-icon"></ion-icon>
+                        <div class="step">
+                            Join our community by creating your profile
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-box">
+                    <div class="step-number">02</div>
+                    <div class="step-box">
+                        <ion-icon name="search" class="about-icon"></ion-icon>
+                        <div class="step">
+                            Browse through available trips and choose one you like
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-box">
+                    <div class="step-number">03</div>
+                    <div class="step-box">
+                        <ion-icon name="link" class="about-icon"></ion-icon>
+                        <div class="step">
+                            Link with other people to establish lasting connections
+                        </div>
+                    </div>
+                </div>
+			</div>
+            <img src="../img/bilet.webp" class="about-img">
+		</section>
+        <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+        <script src="../script.js"></script>
+    </body>
+</html>

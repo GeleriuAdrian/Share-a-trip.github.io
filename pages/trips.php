@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/x-icon" href="../img/logo.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lemon&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../style.css" />
+        <title>SHARE A TRIP</title>
+    </head>
+    <body>
+        <header class="header header-trips">
+            <div class="logo-box">
+                <img src="../img/logo.webp" alt="logo" class="logo-h" />
+                <h3 class="header-name">Share a trip</h3>
+            </div>
+            <nav class="header-nav">
+                <ul class="header-list">
+                    <li class="header-li">
+                        <a href="trips.php" class="header-link header-link-active">trips</a>
+                    </li>
+                    <li class="header-li">
+                        <a href="profile.php" class="header-link">profile</a>
+                    </li>
+                    <li class="header-li">
+                        <a href="contact.php" class="header-link">contact</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main class="trips-section">
+            <div class="trip-popup-box">
+                <div class="trip-popup" id="trip-popup-1">
+                    <ion-icon name="close-circle-outline" class="popup-icon" onclick="closePopup('trip-popup-1')"></ion-icon>
+                    <div class="trip-popup-title">Venice, Italy</div>
+                    <div class="trip-popup-date">September 11, 2024</div>
+                    <form action="../includes/trip.php" class="trip-form" method="post">
+                        <input type="hidden" name="trip_id" value="1">
+                        <input
+                        type="submit"
+                        class="trip-popup-btn"
+                        value="Take trip"
+                        name="trip">
+                    </form>
+                </div>
+                <div class="trip-popup" id="trip-popup-2">
+                    <ion-icon name="close-circle-outline" class="popup-icon" onclick="closePopup('trip-popup-2')"></ion-icon>
+                    <div class="trip-popup-title">Steamboat Springs, Colorado</div>
+                    <div class="trip-popup-date">January 5, 2025</div>
+                    <form action="../includes/trip.php" class="trip-form" method="post">
+                        <input type="hidden" name="trip_id" value="2">
+                        <input
+                        type="submit"
+                        class="trip-popup-btn"
+                        value="Take trip"
+                        name="trip">
+                    </form>
+                </div>
+                <div class="trip-popup" id="trip-popup-3">
+                    <ion-icon name="close-circle-outline" class="popup-icon" onclick="closePopup('trip-popup-3')"></ion-icon>
+                    <div class="trip-popup-title">Acropolis, Greece</div>
+                    <div class="trip-popup-date">June 25, 2024</div>
+                    <form action="../includes/trip.php" class="trip-form" method="post">
+                        <input type="hidden" name="trip_id" value="3">
+                        <input
+                        type="submit"
+                        class="trip-popup-btn"
+                        value="Take trip"
+                        name="trip">
+                    </form>
+                </div>
+                <div class="trip-popup" id="trip-popup-4">
+                    <ion-icon name="close-circle-outline" class="popup-icon" onclick="closePopup('trip-popup-4')"></ion-icon>
+                    <div class="trip-popup-title">Sevilla, Spain</div>
+                    <div class="trip-popup-date">August 20, 2025</div>
+                    <form action="../includes/trip.php" class="trip-form" method="post">
+                        <input type="hidden" name="trip_id" value="4">
+                        <input
+                        type="submit"
+                        class="trip-popup-btn"
+                        value="Take trip"
+                        name="trip">
+                    </form>
+                </div>
+                <div class="trip-popup" id="trip-popup-5">
+                    <ion-icon name="close-circle-outline" class="popup-icon" onclick="closePopup('trip-popup-5')"></ion-icon>
+                    <div class="trip-popup-title">Positano, Italy</div>
+                    <div class="trip-popup-date">July 2, 2024</div>
+                    <form action="../includes/trip.php" class="trip-form" method="post">
+                        <input type="hidden" name="trip_id" value="5">
+                        <input
+                        type="submit"
+                        class="trip-popup-btn"
+                        value="Take trip"
+                        name="trip">
+                    </form>
+                </div>
+                <div class="trip-popup" id="trip-popup-6">
+                    <ion-icon name="close-circle-outline" class="popup-icon" onclick="closePopup('trip-popup-6')"></ion-icon>
+                    <div class="trip-popup-title">Vrsic, Slovenia</div>
+                    <div class="trip-popup-date">October 15, 2024</div>
+                    <form action="../includes/trip.php" class="trip-form" method="post">
+                        <input type="hidden" name="trip_id" value="6">
+                        <input
+                        type="submit"
+                        class="trip-popup-btn"
+                        value="Take trip"
+                        name="trip">
+                    </form>
+                </div>
+            </div>
+            <ul class="slider">
+                <li class="trip-item trip-item1">
+                    <div class="trip-content">
+                        <h2 class="trip-title">Vrsic Pass</h2>
+                        <p class="description">
+                            The Vršič Pass, the highest road pass in the Eastern
+                            Julian Alps of Slovenia, captivates travelers with
+                            its challenging hairpin turns, stunning alpine
+                            vistas, and a historic Russian Chapel commemorating
+                            the POWs who built this marvel during World War I.
+                        </p>
+                        <button class="trip-btn" id="Vrsic" onclick="openPopup('trip-popup-6')">More Details</button>
+                    </div>
+                </li>
+                <li class="trip-item trip-item2">
+                    <div class="trip-content">
+                        <h2 class="trip-title">Venice</h2>
+                        <p class="description">
+                            Embark on a gondola ride through the intricate network of canals in Venice, where skilled gondoliers guide you past historic landmarks, quaint bridges, and charming buildings, providing a picturesque view of the city's enchanting beauty. As you glide through the waterways, immerse yourself in the serenade of the city, discovering its timeless allure.
+                        </p>
+                        <button class="trip-btn" id="Venice" onclick="openPopup('trip-popup-1')">More Details</button>
+                    </div>
+                </li>
+                <li class="trip-item trip-item3">
+                    <div class="trip-content">
+                        <h2 class="trip-title">Steamboat Springs</h2>
+                        <p class="description">
+                            Indulge in the exhilarating experience of skiing in Steamboat Springs, Colorado, where the pristine slopes of the Rocky Mountains beckon adventure enthusiasts. With its renowned Champagne Powder® snow and vast terrain, Steamboat offers a thrilling winter playground for skiers of all levels, promising an unforgettable alpine escape amid breathtaking mountain scenery.
+                        </p>
+                        <button class="trip-btn" id="Steamboat" onclick="openPopup('trip-popup-2')">More Details</button>
+                    </div>
+                </li>
+                <li class="trip-item trip-item4">
+                    <div class="trip-content">
+                        <h2 class="trip-title">Acropolis</h2>
+                        <p class="description">
+                            Immerse yourself in the rich history as you explore the Acropolis in Athens, Greece. Dominating the city's skyline, this ancient citadel beckons visitors with its iconic marble structures, including the Parthenon, offering a captivating journey through the architectural wonders of classical antiquity amidst the breathtaking backdrop of Athens.
+                        </p>
+                        <button class="trip-btn" id="Acropolis" onclick="openPopup('trip-popup-3')">More Details</button>
+                    </div>
+                </li>
+                <li class="trip-item trip-item5">
+                    <div class="trip-content">
+                        <h2 class="trip-title">Sevilla</h2>
+                        <p class="description">
+                            Delve into the vibrant rhythm of flamenco in Sevilla, Spain, by attending a passionate and soul-stirring flamenco show. As the dancers move to the hypnotic beats of guitar and percussion, you'll experience the essence of Spanish culture in the heart of Sevilla, creating unforgettable memories of this enchanting Andalusian city.
+                        </p>
+                        <button class="trip-btn" id="Sevilla" onclick="openPopup('trip-popup-4')">More Details</button>
+                    </div>
+                </li>
+                <li class="trip-item trip-item6">
+                    <div class="trip-content">
+                        <h2 class="trip-title">Positano</h2>
+                        <p class="description">
+                            If you're an extreme sports adept, embark on an exhilarating adventure along the stunning Amalfi Coast by trying cliff diving in Positano, Italy. With the azure Tyrrhenian Sea below and the picturesque coastal cliffs above, experience an adrenaline rush as you leap into the crystal-clear waters, surrounded by the breathtaking beauty of this Mediterranean paradise.
+                        </p>
+                        <button class="trip-btn" id="Positano" onclick="openPopup('trip-popup-5')">More Details</button>
+                    </div>
+                </li>
+            </ul>
+            <nav class="trips-nav">
+                <ion-icon name="ios-arrow-round-back" class="prev trip-icon"></ion-icon>
+                <ion-icon name="ios-arrow-round-forward" class="next trip-icon"></ion-icon>
+            </nav>
+        </main>
+        <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+        <script src="../script.js"></script>
+    </body>
+</html>
