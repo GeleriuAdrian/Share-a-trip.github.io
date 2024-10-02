@@ -72,21 +72,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //Verify if registered to trip
 
-document.addEventListener("DOMContentLoaded", function() {
-    let k = 0; // Declare k outside the loop
-    for (let i = 1; i <= 6; i++) {
-        if (getCookie(`trip${i}`)) {
-            let tripCard = document.querySelector(`.trip-card[data-trip-id="${i}"]`);
-            if (tripCard) {
-                tripCard.classList.add("trip-card-active");
-            }
-            k = k + 1; // Increment k if a trip is found
-        }
-    }
-    let errorMsg = document.querySelector(".no-trip-msg"); // Use querySelector to select single element
-    if (k === 0) { 
-        errorMsg.style.display = "inline-block";
-    } else {
-        errorMsg.style.display = "none";
-    }
-});
+// document.addEventListener("DOMContentLoaded", function() {
+//     let k = 0; // Declare k outside the loop
+//     for (let i = 1; i <= 6; i++) {
+//         if (getCookie(`trip${i}`)) {
+//             let tripCard = document.querySelector(`.trip-card[data-trip-id="${i}"]`);
+//             if (tripCard) {
+//                 tripCard.classList.add("trip-card-active");
+//             }
+//             k = k + 1; // Increment k if a trip is found
+//         }
+//     }
+//     let errorMsg = document.querySelector(".no-trip-msg"); // Use querySelector to select single element
+//     if (k === 0) { 
+//         errorMsg.style.display = "inline-block";
+//     } else {
+//         errorMsg.style.display = "none";
+//     }
+// });
