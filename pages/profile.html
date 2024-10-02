@@ -1,147 +1,231 @@
-<?php
-    $con = mysqli_connect('localhost', 'root', '', 'share a trip');
-    $id = $_COOKIE['id'];
-    $sql = "SELECT trip_id FROM user_trips WHERE user_id = '$id'";
-    $results = mysqli_query($con, $sql);
-    if ($results) {
-        while ($row = mysqli_fetch_assoc($results)) {
-            $trip_id = $row['trip_id'];
-            switch($trip_id){
-                case 1: 
-                    setcookie('trip1','true', time() + (86400 * 30),'/');
-                    break;
-                case 2: 
-                    setcookie('trip2','true', time() + (86400 * 30),'/');
-                    break;
-                case 3: 
-                    setcookie('trip3','true', time() + (86400 * 30),'/');
-                    break;
-                case 4: 
-                    setcookie('trip4','true', time() + (86400 * 30),'/');
-                    break;
-                case 5: 
-                    setcookie('trip5','true', time() + (86400 * 30),'/');
-                    break;
-                case 6: 
-                    setcookie('trip6','true', time() + (86400 * 30),'/');
-                    break;
-            }
-        }
-    } else {
-        echo "Error: " . mysqli_error($con);
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/x-icon" href="../img/logo.png">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Lemon&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="../style.css">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/x-icon" href="../img/logo.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lemon&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../style.css" />
         <title>SHARE A TRIP</title>
-</head>
-<body>
-    <header class="header">
-        <div class="logo-box">
-            <img src="../img/logo.webp" alt="logo" class="logo-h">
-            <h3 class="header-name">Share a trip</h3>
-        </div>
-        <nav class="header-nav">
-            <ul class="header-list">
-                <li class="header-li">
-                    <a href="trips.html" class="header-link">trips</a>
-                </li>
-                <li class="header-li">
-                    <a href="profile.html" class="header-link header-link-active">profile</a>
-                </li>
-                <li class="header-li">
-                    <a href="contact.html" class="header-link">contact</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <div class="profile-page">
-        <div class="profile-container">
-            <h3 class="profile-name"></h3>
-			<div class="carousel-container">
-                <div class="no-trip-msg">You are not registered to any trip</div>
-                <div class="trips-container">
-                    <div class="trip-card" data-trip-id="1" id="trip-card-1">
-                        <form action="../includes/delete_trip.php" method="POST" class="delete-form">
-                            <input type="hidden" name="trip_id" value="1">
-                            <input type="hidden" name="trip_id_c" value="trip1">
-                            <button type="submit" class="btn-delete">  
-                                        <ion-icon name="close-circle-outline" class="popup-icon-trip" onclick="closePopup('trip-card-1')"></ion-icon>
-                            </button>
-                        </form>
-                        <h3 class="trip-card-title">Venice</h3>
-                        <p class="trip-card-date">11.09.2024/13.09.2024</p>
+        <script
+            type="module"
+            src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"
+        ></script>
+        <script
+            nomodule=""
+            src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"
+        ></script>
+        <script type="module" src="../security.js"></script>
+    </head>
+    <body>
+        <header class="header">
+            <div class="logo-box">
+                <img src="../img/logo.webp" alt="logo" class="logo-h" />
+                <h3 class="header-name">Share a trip</h3>
+            </div>
+            <nav class="header-nav">
+                <ul class="header-list">
+                    <li class="header-li">
+                        <a href="trips.html" class="header-link">trips</a>
+                    </li>
+                    <li class="header-li">
+                        <a
+                            href="profile.html"
+                            class="header-link header-link-active"
+                            >profile</a
+                        >
+                    </li>
+                    <li class="header-li">
+                        <a href="contact.html" class="header-link">contact</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div class="profile-page">
+            <div class="profile-container">
+                <h3 class="profile-name"></h3>
+                <div class="carousel-container">
+                    <div class="no-trip-msg">
+                        You are not registered to any trip
                     </div>
-                    <div class="trip-card" data-trip-id="2" id="trip-card-2">
-                        <form action="../includes/delete_trip.php" method="POST" class="delete-form">
-                            <input type="hidden" name="trip_id" value="2">
-                            <input type="hidden" name="trip_id_c" value="trip2">
-                            <button type="submit" class="btn-delete">    
-                                <ion-icon name="close-circle-outline" class="popup-icon-trip" onclick="closePopup('trip-card-2')"></ion-icon>
-                            </button>
-                        </form>
-                        <h3 class="trip-card-title">Steamboat Springs</h3>
-                        <p class="trip-card-date">5.01.2025/12.01.2025</p>
-                    </div>
-                    <div class="trip-card" data-trip-id="3" id="trip-card-3">
-                        <form action="../includes/delete_trip.php" method="POST" class="delete-form">
-                            <input type="hidden" name="trip_id" value="3">
-                            <input type="hidden" name="trip_id_c" value="trip3">
-                            <button type="submit" class="btn-delete">    
-                                <ion-icon name="close-circle-outline" class="popup-icon-trip" onclick="closePopup('trip-card-3')"></ion-icon>
-                            </button>
-                        </form>
-                        <h3 class="trip-card-title">Acropolis</h3>
-                        <p class="trip-card-date">25.06.2024/5.07.2024</p>
-                    </div>
-                    <div class="trip-card" data-trip-id="4" id="trip-card-4">
-                        <form action="../includes/delete_trip.php" method="POST" class="delete-form">
-                            <input type="hidden" name="trip_id" value="4">
-                            <input type="hidden" name="trip_id_c" value="trip4">
-                            <button type="submit" class="btn-delete">    
-                                <ion-icon name="close-circle-outline" class="popup-icon-trip" onclick="closePopup('trip-card-4')"></ion-icon>
-                            </button>
-                        </form>
-                        <h3 class="trip-card-title">Sevilla</h3>
-                        <p class="trip-card-date">20.08.2025/23.08.2025</p>
-                    </div>
-                    <div class="trip-card" data-trip-id="5" id="trip-card-5">
-                        <form action="../includes/delete_trip.php" method="POST" class="delete-form">
-                            <input type="hidden" name="trip_id" value="5">
-                            <input type="hidden" name="trip_id_c" value="trip5">
-                            <button type="submit" class="btn-delete">    
-                                <ion-icon name="close-circle-outline" class="popup-icon-trip" onclick="closePopup('trip-card-5')"></ion-icon>
-                            </button>
-                        </form>
-                        <h3 class="trip-card-title">Positano</h3>
-                        <p class="trip-card-date">2.07.2024/6.07.2024</p>
-                    </div>
-                    <div class="trip-card" data-trip-id="6" id="trip-card-6">
-                        <form action="../includes/delete_trip.php" method="POST" class="delete-form">
-                            <input type="hidden" name="trip_id" value="6">
-                            <input type="hidden" name="trip_id_c" value="trip6">
-                            <button type="submit" class="btn-delete">    
-                                <ion-icon name="close-circle-outline" class="popup-icon-trip" onclick="closePopup('trip-card-6')"></ion-icon>
-                            </button>
-                        </form>
-                        <h3 class="trip-card-title">Vrsic</h3>
-                        <p class="trip-card-date">15.10.2024/22.10.2024</p>
+                    <div class="trips-container">
+                        <div
+                            class="trip-card"
+                            data-trip-id="1"
+                            id="trip-card-1"
+                        >
+                            <form
+                                action="../includes/delete_trip.php"
+                                method="POST"
+                                class="delete-form"
+                            >
+                                <input type="hidden" name="trip_id" value="1" />
+                                <input
+                                    type="hidden"
+                                    name="trip_id_c"
+                                    value="trip1"
+                                />
+                                <button type="submit" class="btn-delete">
+                                    <ion-icon
+                                        name="close-circle-outline"
+                                        class="popup-icon-trip"
+                                        onclick="closePopup('trip-card-1')"
+                                    ></ion-icon>
+                                </button>
+                            </form>
+                            <h3 class="trip-card-title">Venice</h3>
+                            <p class="trip-card-date">11.09.2024/13.09.2024</p>
+                        </div>
+                        <div
+                            class="trip-card"
+                            data-trip-id="2"
+                            id="trip-card-2"
+                        >
+                            <form
+                                action="../includes/delete_trip.php"
+                                method="POST"
+                                class="delete-form"
+                            >
+                                <input type="hidden" name="trip_id" value="2" />
+                                <input
+                                    type="hidden"
+                                    name="trip_id_c"
+                                    value="trip2"
+                                />
+                                <button type="submit" class="btn-delete">
+                                    <ion-icon
+                                        name="close-circle-outline"
+                                        class="popup-icon-trip"
+                                        onclick="closePopup('trip-card-2')"
+                                    ></ion-icon>
+                                </button>
+                            </form>
+                            <h3 class="trip-card-title">Steamboat Springs</h3>
+                            <p class="trip-card-date">5.01.2025/12.01.2025</p>
+                        </div>
+                        <div
+                            class="trip-card"
+                            data-trip-id="3"
+                            id="trip-card-3"
+                        >
+                            <form
+                                action="../includes/delete_trip.php"
+                                method="POST"
+                                class="delete-form"
+                            >
+                                <input type="hidden" name="trip_id" value="3" />
+                                <input
+                                    type="hidden"
+                                    name="trip_id_c"
+                                    value="trip3"
+                                />
+                                <button type="submit" class="btn-delete">
+                                    <ion-icon
+                                        name="close-circle-outline"
+                                        class="popup-icon-trip"
+                                        onclick="closePopup('trip-card-3')"
+                                    ></ion-icon>
+                                </button>
+                            </form>
+                            <h3 class="trip-card-title">Acropolis</h3>
+                            <p class="trip-card-date">25.06.2024/5.07.2024</p>
+                        </div>
+                        <div
+                            class="trip-card"
+                            data-trip-id="4"
+                            id="trip-card-4"
+                        >
+                            <form
+                                action="../includes/delete_trip.php"
+                                method="POST"
+                                class="delete-form"
+                            >
+                                <input type="hidden" name="trip_id" value="4" />
+                                <input
+                                    type="hidden"
+                                    name="trip_id_c"
+                                    value="trip4"
+                                />
+                                <button type="submit" class="btn-delete">
+                                    <ion-icon
+                                        name="close-circle-outline"
+                                        class="popup-icon-trip"
+                                        onclick="closePopup('trip-card-4')"
+                                    ></ion-icon>
+                                </button>
+                            </form>
+                            <h3 class="trip-card-title">Sevilla</h3>
+                            <p class="trip-card-date">20.08.2025/23.08.2025</p>
+                        </div>
+                        <div
+                            class="trip-card"
+                            data-trip-id="5"
+                            id="trip-card-5"
+                        >
+                            <form
+                                action="../includes/delete_trip.php"
+                                method="POST"
+                                class="delete-form"
+                            >
+                                <input type="hidden" name="trip_id" value="5" />
+                                <input
+                                    type="hidden"
+                                    name="trip_id_c"
+                                    value="trip5"
+                                />
+                                <button type="submit" class="btn-delete">
+                                    <ion-icon
+                                        name="close-circle-outline"
+                                        class="popup-icon-trip"
+                                        onclick="closePopup('trip-card-5')"
+                                    ></ion-icon>
+                                </button>
+                            </form>
+                            <h3 class="trip-card-title">Positano</h3>
+                            <p class="trip-card-date">2.07.2024/6.07.2024</p>
+                        </div>
+                        <div
+                            class="trip-card"
+                            data-trip-id="6"
+                            id="trip-card-6"
+                        >
+                            <form
+                                action="../includes/delete_trip.php"
+                                method="POST"
+                                class="delete-form"
+                            >
+                                <input type="hidden" name="trip_id" value="6" />
+                                <input
+                                    type="hidden"
+                                    name="trip_id_c"
+                                    value="trip6"
+                                />
+                                <button type="submit" class="btn-delete">
+                                    <ion-icon
+                                        name="close-circle-outline"
+                                        class="popup-icon-trip"
+                                        onclick="closePopup('trip-card-6')"
+                                    ></ion-icon>
+                                </button>
+                            </form>
+                            <h3 class="trip-card-title">Vrsic</h3>
+                            <p class="trip-card-date">15.10.2024/22.10.2024</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-    <script src="../script.js"></script>
-</body>
+        <script type="module" src="../security.js"></script>
+        <script src="../script.js"></script>
+    </body>
 </html>

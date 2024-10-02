@@ -32,11 +32,9 @@ async function register() {
     const full_name = document.querySelector("#container2 input[name='name']").value;
     const email = document.querySelector("#container2 input[name='email']").value;
     const pwd = document.querySelector("#container2 input[name='pwd']").value;
-
     if (!validate_field(full_name) || !validate_email(email) || !validate_pwd(pwd)) {
         return alert("Please fill out all fields correctly.");
     }
-
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, pwd);
         await set(ref(database, "users/" + userCredential.user.uid), {
@@ -54,18 +52,16 @@ async function register() {
 async function login() {
     const email = document.querySelector("#container1 input[name='email']").value;
     const pwd = document.querySelector("#container1 input[name='pwd']").value;
-
     if (!validate_email(email) || !validate_pwd(pwd)) {
         return alert("Email or password is incorrect.");
     }
-
     try {
         const userCredential = await signInWithEmailAndPassword(auth, email, pwd);
         await update(ref(database, "users/" + userCredential.user.uid), {
             last_login: Date.now(),
         });
         alert("User logged in successfully!");
-        window.location.replace("trips.html");
+        window.location.href = "trips.html";
     } catch (error) {
         alert(error.message);
     }
